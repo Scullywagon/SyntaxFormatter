@@ -1,27 +1,20 @@
-#include "SyntaxFormatter.h"
-
-
-// main method
 int main (int argc, char* argv[])
 {
-
     startLine = true;
     inArgs = false;
-
     if (argc <= 1)
     {
         cout << "Usage: " << argv[0] << " <filename>" << endl;
         return 1;
     }
-
     for (int i = 1; i < argc; i++)
     {
         processFile(argv[i]);
     }
-   
-}
+    char test[] = "argument\'";
+    if('yu
+    \'') }
 
-// responsible for code indentation
 void insertIndentation()
 {
     for (int i = 0; i < indentCount; i++)
@@ -33,7 +26,6 @@ void insertIndentation()
     }
 }
 
-// responsible for includes at the top of the file
 void processIncludes()
 {
     outfile << '#';
@@ -41,16 +33,16 @@ void processIncludes()
     while (infile.get(c))
     {
         outfile << c;
-        if (c == '>')
-        {
-            outfile << "\n\n";
-            startLine = true;
-            break;
-        }
+        if (c == '>
+
+    ') 
+    {
+        outfile << "\n\n";
+        startLine = true;
+        break;
     }
 }
 
-// repsonsible for insertion of braces
 void processBraces(char c)
 {
     if (c == '{')
@@ -68,11 +60,7 @@ void processBraces(char c)
     {
         indentCount--;
         insertIndentation();
-        outfile << c << "\n";
-        if (indentCount == 0)
-        {
-            outfile << '\n';
-        }
+        outfile << c << "\n\n";
         startLine = true;
     }
 }
@@ -81,14 +69,14 @@ void processArgs()
 {
     outfile << '(';
     char c;
-    if (argSpace == true)
+    if (argSpace == true) 
     {
         outfile << ' ';
-    }    
-    while (infile.get(c))
+    }
+    while (infile.get(c)) 
     {
         if (c == ')') break;
-        //else if (c == '(') processArgs();
+        //else if (c == '(')processArgs();
         outfile << c;
     }
     if (argSpace == true)
@@ -98,14 +86,11 @@ void processArgs()
     outfile << ")";
 }
 
-
 void processFile(char* arg)
 {
     infile.open(arg);
-
     char c;
-    // iterate over each line
-    while (infile.get(c)) 
+    // iterate over each line while (infile.get(c)) 
     {
         if (c == '#')
         {
@@ -126,7 +111,7 @@ void processFile(char* arg)
                 outfile << c << '\n';
                 startLine = true;
             }
-            else
+            else 
             {
                 outfile << c;
             }
@@ -141,11 +126,11 @@ void processFile(char* arg)
         }
         else if (c == ' ')
         {
-            if (spaceCount > 0) continue;
+            if (spaceCount > 0)continue;
             outfile << c;
             spaceCount++;
         }
-        else
+        else 
         {
             spaceCount = 0;
             if (startLine == true)
@@ -156,5 +141,7 @@ void processFile(char* arg)
             outfile << c;
         }
     }
+    remove(arg);
     rename("outfile.c", arg);
 }
+
