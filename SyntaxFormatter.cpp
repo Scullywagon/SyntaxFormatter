@@ -44,11 +44,13 @@ int main (int argc, char* argv[])
             startLine = false;
             inIncludes = true;
             outfile << c;
+            continue;
         }
         else if (inIncludes == true && c == '>')
         {
             outfile << c << "\n\n";
             startLine = true;
+            continue;
         }
         else if (c == '{')
         {
@@ -112,6 +114,7 @@ int main (int argc, char* argv[])
             outfile << c;
         }
     }
+    
 }
 
 void doTabs()
